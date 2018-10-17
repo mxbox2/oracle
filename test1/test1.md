@@ -98,4 +98,4 @@ Column Projection Information (identified by operation id):
 -------------------------------------------------------------------------------
 ```
 通过上面的两个执行计划的比较，我们可以看出查询1的查询语句比查询2的语句更优。因为查询1只有一次全表搜索，查询2有两次；并且查询1是先过滤后汇总（where语句），参与汇总计算的数据量少。而查询2是先汇总后过滤（having子句），参与汇总与计算的数据量多。
-![图片加载失败](https://github.com/mxbox2/oracle/blob/master/test1/优化指导.jpg)
+![图片加载失败](https://github.com/mxbox2/oracle/blob/master/test1/%E4%BC%98%E5%8C%96%E6%8C%87%E5%AF%BC.jpg)
