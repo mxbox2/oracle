@@ -164,3 +164,4 @@ Column Projection Information (identified by operation id):
 
 -------------------------------------------------------------------------------
 ```
+自己设计的查询语句的执行计划如上，其中cost=5,rows=106,predicate information中的有一次索引搜索access。通过DEPARTMENT_ID查询出所有的部门和各个部门的平均工资与人数，然后再使用ORDER BY对其进行升序排序。
