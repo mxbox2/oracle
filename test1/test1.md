@@ -122,6 +122,7 @@ Column Projection Information (identified by operation id):
 ## 自己的查询语句
 各个部门平均工资和人数，按照部门名字升序排列：
 ![图片加载失败](https://github.com/mxbox2/oracle/blob/master/test1/my.jpg?raw=true)
+
 该查询语句的执行计划为：
 ```
 1- Original
