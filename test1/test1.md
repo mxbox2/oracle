@@ -1,3 +1,4 @@
+## 教材上的查询语句分析
 查询1的执行计划如下，其中：cost=5,rows=20,predicate information中有一次索引access，一次全表搜索filter。
 ```
 1- Original
@@ -118,5 +119,4 @@ Column Projection Information (identified by operation id):
     创建推荐的索引可以显著地改进此语句的执行计划。但是, 使用典型的 SQL 工作量运行 "访问指导"
     可能比单个语句更可取。通过这种方法可以获得全面的索引建议案, 包括计算索引维护的开销和附加的空间消耗。
  ```
-
-自己的查询语句：
+## 自己的查询语句
