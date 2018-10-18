@@ -121,4 +121,46 @@ Column Projection Information (identified by operation id):
  ```
 ## 自己的查询语句
 各个部门平均工资和人数，按照部门名字升序排列：
-![图片加载失败]()
+![图片加载失败](https://github.com/mxbox2/oracle/blob/master/test1/my.jpg?raw=true)
+该查询语句的执行计划为：
+```
+1- Original
+-----------
+Plan hash value: 1817899749
+
+ 
+--------------------------------------------------------------------------------------
+| Id  | Operation           | Name           | Rows  | Bytes | Cost (%CPU)| Time     |
+--------------------------------------------------------------------------------------
+|   0 | SELECT STATEMENT    |                |    27 |   621 |     5  (20)| 00:00:01 |
+|   1 |  SORT GROUP BY      |                |    27 |   621 |     5  (20)| 00:00:01 |
+|*  2 |   HASH JOIN         |                |   106 |  2438 |     4   (0)| 00:00:01 |
+|   3 |    INDEX FULL SCAN  | IDX$$_006F0001 |    27 |   432 |     1   (0)| 00:00:01 |
+|   4 |    TABLE ACCESS FULL| EMPLOYEES      |   107 |   749 |     3   (0)| 00:00:01 |
+--------------------------------------------------------------------------------------
+ 
+Query Block Name / Object Alias (identified by operation id):
+-------------------------------------------------------------
+ 
+   1 - SEL$1
+   3 - SEL$1 / DEPT@SEL$1
+   4 - SEL$1 / EMP@SEL$1
+ 
+Predicate Information (identified by operation id):
+---------------------------------------------------
+ 
+   2 - access("EMP"."DEPARTMENT_ID"="DEPT"."DEPARTMENT_ID")
+ 
+Column Projection Information (identified by operation id):
+-----------------------------------------------------------
+ 
+   1 - (#keys=1) "DEPT"."DEPARTMENT_NAME"[VARCHAR2,30], COUNT(*)[22], 
+       COUNT("EMP"."SALARY")[22], SUM("EMP"."SALARY")[22]
+   2 - (#keys=1) "DEPT"."DEPARTMENT_NAME"[VARCHAR2,30], 
+       "EMP"."SALARY"[NUMBER,22]
+   3 - "DEPT"."DEPARTMENT_ID"[NUMBER,22], 
+       "DEPT"."DEPARTMENT_NAME"[VARCHAR2,30]
+   4 - "EMP"."SALARY"[NUMBER,22], "EMP"."DEPARTMENT_ID"[NUMBER,22]
+
+-------------------------------------------------------------------------------
+```
