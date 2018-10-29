@@ -71,6 +71,7 @@ wang
 SQL> exit
 ```
 第3步结果图：
+
 ![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E7%AC%AC%E4%B8%89%E6%AD%A5.png?raw=true)
 > 测试一下同学用户之间的表的共享，只读共享和读写共享都测试一下。
 
@@ -104,3 +105,4 @@ SQL>SELECT a.tablespace_name "表空间名",Total/1024/1024 "大小MB",
 查看数据库使用情况的结果图：
 
 ![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B5.png?raw=true)
+![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E6%9F%A5%E7%9C%8B%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9A%84%E4%BD%BF%E7%94%A8%E6%83%85%E5%86%B52.png?raw=true)
