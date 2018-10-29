@@ -6,23 +6,23 @@ Oracle有一个开发者角色resource，可以创建表、过程、触发器等
 - 创建角色之后，再创建用户new_user，给用户分配表空间，设置限额为50M，授予con_res_view角色。
 - 最后测试：用新用户new_user连接数据库、创建表，插入数据，创建视图，查询表和视图的数据。
 
-## 实验参考步骤
+## 实验过程：
 
-对于以下的对象名称con_res_view，new_user，在实验的时候应该修改为自己的名称。
+我的角色名为con_res_view_mx；用户名为new_user_mx
 
 - 第1步：以system登录到pdborcl，创建角色con_res_view和用户new_user，并授权和分配空间：
 
 ```sql
 $ sqlplus system/123@pdborcl
-SQL> CREATE ROLE con_res_view;
+SQL> CREATE ROLE con_res_view_mx;
 Role created.
-SQL> GRANT connect,resource,CREATE VIEW TO con_res_view;
+SQL> GRANT connect,resource,CREATE VIEW TO con_res_view_mx;
 Grant succeeded.
-SQL> CREATE USER new_user IDENTIFIED BY 123 DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
+SQL> CREATE USER new_user_mx IDENTIFIED BY 123 DEFAULT TABLESPACE users TEMPORARY TABLESPACE temp;
 User created.
-SQL> ALTER USER new_user QUOTA 50M ON users;
+SQL> ALTER USER new_user_mx QUOTA 50M ON users;
 User altered.
-SQL> GRANT con_res_view TO new_user;
+SQL> GRANT con_res_view_mx TO new_user_mx;
 Grant succeeded.
 SQL> exit
 ```
@@ -31,7 +31,7 @@ SQL> exit
 第1步的结果图：
 ![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E7%AC%AC%E4%B8%80%E6%AD%A5.png?raw=true)
 
-- 第2步：新用户new_user连接到pdborcl，创建表mytable和视图myview，插入数据，最后将myview的SELECT对象权限授予hr用户。
+- 第2步：我建立的用户new_user_mx连接到pdborcl，创建表mytable和视图myview，插入数据，最后将myview的SELECT对象权限授予hr用户。
 
 ```sql
 $ sqlplus new_user/123@pdborcl
@@ -63,7 +63,7 @@ SQL>exit
 
 ```sql
 $ sqlplus hr/123@pdborcl
-SQL> SELECT * FROM new_user.myview;
+SQL> SELECT * FROM new_user_mx.myview;
 NAME
 --------------------------------------------------
 zhang
