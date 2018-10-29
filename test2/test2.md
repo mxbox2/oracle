@@ -74,6 +74,9 @@ SQL> exit
 
 ![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E7%AC%AC%E4%B8%89%E6%AD%A5.png?raw=true)
 > 测试一下同学用户之间的表的共享，只读共享和读写共享都测试一下。
+只读共享：
+
+![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E5%8F%AA%E8%AF%BB%E6%8E%88%E6%9D%83.png?raw=true)
 
 ## 数据库和表空间占用分析
 
