@@ -76,13 +76,15 @@ SQL> exit
 > 测试一下同学用户之间的表的共享，只读共享和读写共享都测试一下。
 
 只读共享：
-
+授权：
 ![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E5%8F%AA%E8%AF%BB%E6%8E%88%E6%9D%83.png?raw=true)
+授权结果：
 ![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E5%8F%AA%E8%AF%BB%E6%8E%88%E6%9D%832.png?raw=true)
 
 读写贡献：
-
+授权：
 ![加载失败](./读写授权.png)
+授权结果：
 ![加载失败](./读写授权2.png)
 ## 数据库和表空间占用分析
 
