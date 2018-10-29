@@ -80,15 +80,17 @@ SQL> exit
 授权：
 
 ![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E5%8F%AA%E8%AF%BB%E6%8E%88%E6%9D%83.png?raw=true)
+
 授权结果：
 
 ![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E5%8F%AA%E8%AF%BB%E6%8E%88%E6%9D%832.png?raw=true)
 
-读写贡献：
+读写授权：
 
 授权：
 
 ![加载失败](./读写授权.png)
+
 授权结果：
 
 ![加载失败](./读写授权2.png)
