@@ -56,6 +56,7 @@ SQL>exit
 ```
 
 第2步结果图：
+
 ![加载失败](https://github.com/mxbox2/oracle/blob/master/test2/%E7%AC%AC%E4%BA%8C%E6%AD%A5.png?raw=true)
 
 - 第3步：用户hr连接到pdborcl，查询new_user授予它的视图myview
@@ -69,7 +70,9 @@ zhang
 wang
 SQL> exit
 ```
+第3步结果图：
 
+![加载失败]（https://github.com/mxbox2/oracle/blob/master/test2/%E7%AC%AC%E4%B8%89%E6%AD%A5.png?raw=true）
 > 测试一下同学用户之间的表的共享，只读共享和读写共享都测试一下。
 
 ## 数据库和表空间占用分析
