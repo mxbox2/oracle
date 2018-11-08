@@ -153,6 +153,39 @@ end;
 ```
 运行三次插入10002条数据结果如图：
 
+![加载失败](./img/插入数据1.jpg)
+![加载失败](./img/插一查询结果.jpg)
+
+对order_details进行插入数据：
+```
+declare 
+  m integer; 
+begin 
+
+--输出开始时间 
+  dbms_output.put_line('start:'||sysdate); 
+  m:=0;
+
+--循环插入的数据量 
+  for i in 1..3334 loop 
+   m:=m+1; 
+insert into ORDER_DETAILS (ID,ORDER_ID,PRODUCT_ID,PRODUCT_NUM,PRODUCT_PRICE) 
+values (m,m,'product'||m,15,29);
+    commit; 
+  end loop; 
+--输出结束时间 
+  dbms_output.put_line('end:'||sysdate); 
+end;
+```
+插入结果查询：
+![加载失败](./img/插入数据2.jpg)
+
+![加载失败](./img/插二查询结果.jpg)
+
+联合查询：
+
+![加载失败](./img/联合查询.jpg)
+
 - 写出插入数据的语句和查询数据的语句，并分析语句的执行计划。
 - 进行分区与不分区的对比实验。
 
