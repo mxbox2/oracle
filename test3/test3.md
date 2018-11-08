@@ -216,6 +216,8 @@ select * from table(dbms_xplan.display());
 再对orders表进行TABLE ACCESS BY GLOBAL INDEX ROWID，即rowid与索引的扫描，找出符合条件的元素。
 - 进行分区与不分区的对比实验。
 
+由对比试验可知，对表进行分区查询速度更加快速一些。
+
 在建立orders 表时按照订单日期进行了范围分区，将2016以前的数据存储在users表空间中，将2016年的数据存储在users02表空间中。
 
 由于order_details是orders的从表，通过引用分区语句PARTITION BY REFERENCE（order_details_fk1），利用外键order_details_fk1关联到主表orders，使从表按主表的分区方案与主表存储在同一分区中。
