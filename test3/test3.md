@@ -188,6 +188,7 @@ end;
 ![加载失败](./img/联合查询.jpg)
 
 - 写出插入数据的语句和查询数据的语句，并分析语句的执行计划。
+
 执行计划：
 ```
 EXPLAIN plan for
@@ -203,6 +204,15 @@ select * from table(dbms_xplan.display());
 ```
 执行计划结果：
 ![加载失败](./img/执行计划.png)
+
+最先执行的是PARTITION REFERENCE ALL，对分区进行引用。
+然后执行的是TABLE ACCESS FULL，即是优先对order_details表进行全表扫描。
+其次对order_id进行索引唯一扫描，因为order_details的外键是order_id。
+因为SQL语句中使用了join，所以需要进行了NESTED LOOPS连接查询。
+再对orders表进行TABLE ACCESS BY GLOBAL INDEX ROWID，即rowid与索引的扫描，找出符合条件的元素。
 - 进行分区与不分区的对比实验。
+在建立orders 表时按照订单日期进行了范围分区，将2016以前的数据存储在users表空间中，将2016年的数据存储在users02表空间中。
+由于order_details是orders的从表，通过引用分区语句PARTITION BY REFERENCE（order_details_fk1），利用外键order_details_fk1关联到主表orders，使从表按主表的分区方案与主表存储在同一分区中。
+在从表中虽然没有订单日期列，但由于建立了引用分区，其数据也是按主表的日期范围进行分区存储。
 
 
