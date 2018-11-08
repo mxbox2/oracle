@@ -131,6 +131,28 @@ SQL_Developer(表一与表二）的结果图：
 
 ![图片加载失败](./img/授权.png)
 - 表创建成功后，插入数据，数据能并平均分布到各个分区。每个表的数据都应该大于1万行，对表进行联合查询。
+对orders插入数据：
+```
+declare 
+  m integer; 
+
+begin 
+--输出开始时间 
+  dbms_output.put_line('start:'||sysdate); 
+  m:=0;
+--循环插入的数据量 
+  for i in 1..3334 loop 
+   m:=m+1; 
+insert into ORDERS (ORDER_ID,CUSTOMER_NAME,CUSTOMER_TEL,ORDER_DATE,EMPLOYEE_ID,DISCOUNT,TRADE_RECEIVABLE) 
+values (m,'user'||m,'10000',to_date('2016-05-04 00:00:00', 'SYYYY-MM-DD HH24:MI:SS'),001,15,29);
+    commit; 
+  end loop; 
+--输出结束时间 
+  dbms_output.put_line('end:'||sysdate); 
+end;
+```
+运行三次插入10002条数据结果如图：
+
 - 写出插入数据的语句和查询数据的语句，并分析语句的执行计划。
 - 进行分区与不分区的对比实验。
 
