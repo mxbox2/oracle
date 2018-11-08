@@ -188,6 +188,21 @@ end;
 ![加载失败](./img/联合查询.jpg)
 
 - 写出插入数据的语句和查询数据的语句，并分析语句的执行计划。
+执行计划：
+```
+EXPLAIN plan for
+select 
+    orders.order_id as AID,
+    orders.customer_name as customer_name,
+    order_details.order_id as BID,
+    ORDER_DETAILS.PRODUCT_ID as product_id
+from
+    ORDERS
+INNER JOIN ORDER_DETAILS ON (orders.order_id=order_details.order_id);
+select * from table(dbms_xplan.display());
+```
+执行计划结果：
+![加载失败](./img/执行计划.png)
 - 进行分区与不分区的对比实验。
 
 
