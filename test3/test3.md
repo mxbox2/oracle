@@ -51,6 +51,7 @@ NOLOGGING
 TABLESPACE USERS03);
 ```
 创建结果：
+[！图片加载失败](./img/表一.jpg)
 
 创建订单详表(order_details)：
 ```
@@ -116,8 +117,10 @@ NOCOMPRESS NO INMEMORY 
 );
 ```
 创建结果图：
+[！图片加载失败](./img/表二.png)
 
 SQL_Developer的结果图：
+[！图片加载失败](./img/sql_developer.png)
 
 - 使用**你自己的账号创建本实验的表**，表创建在上述3个分区，自定义分区策略。
 - 你需要使用system用户给你自己的账号分配上述分区的使用权限。你需要使用system用户给你的用户分配可以查询执行计划的权限。
