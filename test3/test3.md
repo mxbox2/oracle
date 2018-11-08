@@ -121,7 +121,7 @@ NOCOMPRESS NO INMEMORY 
 
 ![图片加载失败](./img/表二.png)
 
-SQL_Developer的结果图：
+SQL_Developer(表一与表二）的结果图：
 
 ![图片加载失败](./img/sql_developer.png)
 
