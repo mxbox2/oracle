@@ -772,7 +772,8 @@ MODIFY PARTITION PARTITION_BEFORE_2018
 NOCOMPRESS;
 ```
 创建结果：
-![图片加载失败]()
+
+![图片加载失败](./img/图片1.png)
 
 ###  查询数据：
     1.查询某个员工的信息
