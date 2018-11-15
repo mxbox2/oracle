@@ -77,5 +77,3 @@
 |5|PRODUCT_NUM|NUMBER(8,2)|NO|产品销售数量，必须>0|
 |6|PRODUCT_PRICE|NUMBER(8,2)|NO|产品销售价格|
 
-- 数据关系图如下
-![](./img/orders.png)
