@@ -17,7 +17,8 @@
 维护ORDER_DETAILS的数据时（insert,delete,update）要同步更新ORDERS表订单应收货款ORDERS.Trade_Receivable的值。
 
 sql语句：
-下面是手工增加的一个表空间USERS02。
+
+--下面是手工增加的一个表空间USERS02。
 ```
 Create Tablespace Users02
 datafile
@@ -104,10 +105,10 @@ begin
       end   if;
 end;
 ```
-/
---------------------------------------------------------
---  DDL for Table DEPARTMENTS
---------------------------------------------------------
+
+ 创建 DEPARTMENTS表：
+ ```
+
 CREATE TABLE DEPARTMENTS
 (
   DEPARTMENT_ID NUMBER(6, 0) NOT NULL
@@ -148,9 +149,6 @@ STORAGE
   BUFFER_POOL DEFAULT
 )
 NOCOMPRESS NO INMEMORY NOPARALLEL;
-
-
-
 
 --------------------------------------------------------
 --  DDL for Table EMPLOYEES
@@ -277,8 +275,9 @@ ALTER TABLE EMPLOYEES
 ADD CONSTRAINT EMPLOYEES_SALARY CHECK
 (SALARY>0)
 ENABLE;
-
-
+```
+创建PRODUCTS表：
+```
 
 CREATE TABLE PRODUCTS
 (
@@ -308,21 +307,20 @@ ADD CONSTRAINT PRODUCTS_CHK1 CHECK
 (PRODUCT_TYPE IN ('耗材', '手机', '电脑'))
 ENABLE;
 
-
-
---------------------------------------------------------
---  DDL for Table ORDER_ID_TEMP
+```
+  DDL for Table ORDER_ID_TEMP
+```
 CREATE GLOBAL TEMPORARY TABLE "ORDER_ID_TEMP"
    (	"ORDER_ID" NUMBER(10,0) NOT NULL ENABLE,
 	 CONSTRAINT "ORDER_ID_TEMP_PK" PRIMARY KEY ("ORDER_ID") ENABLE
    ) ON COMMIT DELETE ROWS ;
 
    COMMENT ON TABLE "ORDER_ID_TEMP"  IS '用于触发器存储临时ORDER_ID';
+```
 
+创建 ORDERS表：
+```
 
---------------------------------------------------------
---  DDL for Table ORDERS
---------------------------------------------------------
 CREATE TABLE ORDERS
 (
   ORDER_ID NUMBER(10, 0) NOT NULL
@@ -373,8 +371,9 @@ PARTITION BY RANGE (ORDER_DATE)
   )
   NOCOMPRESS NO INMEMORY
 );
-
+```
 --创建本地分区索引ORDERS_INDEX_DATE：
+```
 CREATE INDEX ORDERS_INDEX_DATE ON ORDERS (ORDER_DATE ASC)
 LOCAL
 (
@@ -466,7 +465,9 @@ REFERENCES EMPLOYEES
   EMPLOYEE_ID
 )
 ENABLE;
-
+```
+创建ORDER_DETAILS表：
+```
 CREATE TABLE ORDER_DETAILS
 (
   ID NUMBER(10, 0) NOT NULL
@@ -525,7 +526,8 @@ PARTITION BY REFERENCE (ORDER_DETAILS_FK1)
   NOCOMPRESS NO INMEMORY
 )
 ;
-
+```
+```
 CREATE UNIQUE INDEX ORDER_DETAILS_PK ON ORDER_DETAILS (ID ASC)
 NOLOGGING
 TABLESPACE USERS
@@ -548,8 +550,9 @@ ADD CONSTRAINT ORDER_DETAILS_PK PRIMARY KEY
 )
 USING INDEX ORDER_DETAILS_PK
 ENABLE;
-
+```
 --这个索引是必须的，可以使整个订单的详单存放在一起
+```
 CREATE INDEX ORDER_DETAILS_ORDER_ID ON ORDER_DETAILS (ORDER_ID)
 GLOBAL PARTITION BY HASH (ORDER_ID)
 (
@@ -564,11 +567,12 @@ ADD CONSTRAINT ORDER_DETAILS_PRODUCT_NUM CHECK
 (Product_Num>0)
 ENABLE;
 
-
+```
 --创建3个触发器
 --------------------------------------------------------
 --  DDL for Trigger ORDERS_TRIG_ROW_LEVEL
 --------------------------------------------------------
+```
 CREATE OR REPLACE EDITIONABLE TRIGGER "ORDERS_TRIG_ROW_LEVEL"
 BEFORE INSERT OR UPDATE OF DISCOUNT ON "ORDERS"
 FOR EACH ROW --行级触发器
@@ -664,7 +668,7 @@ CREATE OR REPLACE FORCE EDITIONABLE VIEW "VIEW_ORDER_DETAILS" ("ID", "ORDER_ID",
   d.PRODUCT_PRICE
 FROM ORDERS o,ORDER_DETAILS d,PRODUCTS p where d.ORDER_ID=o.ORDER_ID and d.PRODUCT_NAME=p.PRODUCT_NAME;
 /
-
+```
 --插入DEPARTMENTS，EMPLOYEES数据
 ```
 INSERT INTO DEPARTMENTS(DEPARTMENT_ID,DEPARTMENT_NAME) values (1,'总经办');
