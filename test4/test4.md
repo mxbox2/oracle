@@ -17,9 +17,8 @@
 维护ORDER_DETAILS的数据时（insert,delete,update）要同步更新ORDERS表订单应收货款ORDERS.Trade_Receivable的值。
 
 sql语句：
-```
 下面是手工增加的一个表空间USERS02。
-*/
+```
 Create Tablespace Users02
 datafile
 '/home/oracle/app/oracle/oradata/orcl/pdborcl/pdbtest_users02_1.dbf'
@@ -27,8 +26,9 @@ datafile
 '/home/oracle/app/oracle/oradata/orcl/pdborcl/pdbtest_users02_2.dbf'
   SIZE 100M AUTOEXTEND ON NEXT 256M MAXSIZE UNLIMITED
 EXTENT MANAGEMENT LOCAL SEGMENT SPACE MANAGEMENT AUTO;
-
+```
 --下面是创建用户new_user_mx
+```
 CREATE USER new_user_mx IDENTIFIED BY 123
 DEFAULT TABLESPACE "USERS"
 TEMPORARY TABLESPACE "TEMP";
@@ -45,16 +45,12 @@ ALTER USER new_user_mx DEFAULT ROLE "CONNECT","RESOURCE";
 
 -- SYSTEM PRIVILEGES
 GRANT CREATE VIEW TO new_user_mx WITH ADMIN OPTION;
-
-/*
-参考：
-1. oracle分区技术-- interval parition实验及总结
-   http://blog.chinaunix.net/uid-23284114-id-3304525.html
-*/
+```
 
 
 --删除表和序列
 --删除表的同时会一起删除主外键、触发器、程序包。
+```
 declare
       num   number;
 begin
@@ -107,6 +103,7 @@ begin
           execute immediate 'DROP PACKAGE MYPACK';
       end   if;
 end;
+```
 /
 --------------------------------------------------------
 --  DDL for Table DEPARTMENTS
@@ -669,6 +666,7 @@ FROM ORDERS o,ORDER_DETAILS d,PRODUCTS p where d.ORDER_ID=o.ORDER_ID and d.PRODU
 /
 
 --插入DEPARTMENTS，EMPLOYEES数据
+```
 INSERT INTO DEPARTMENTS(DEPARTMENT_ID,DEPARTMENT_NAME) values (1,'总经办');
 INSERT INTO EMPLOYEES(EMPLOYEE_ID,NAME,EMAIL,PHONE_NUMBER,HIRE_DATE,SALARY,MANAGER_ID,DEPARTMENT_ID)
   VALUES (1,'李董事长',NULL,NULL,to_date('2010-1-1','yyyy-mm-dd'),50000,NULL,1);
@@ -702,9 +700,10 @@ insert into products (product_name,product_type) values ('paper1','耗材');
 insert into products (product_name,product_type) values ('paper2','耗材');
 insert into products (product_name,product_type) values ('paper3','耗材');
 
-
+```
 --批量插入订单数据，注意ORDERS.TRADE_RECEIVABLE（订单应收款）的自动计算,注意插入数据的速度
 --2千万条记录，插入的时间是：18100秒（约5小时）
+```
 declare
   dt date;
   m number(8,2);
@@ -762,8 +761,10 @@ end;
 ALTER TRIGGER "ORDERS_TRIG_ROW_LEVEL" ENABLE;
 ALTER TRIGGER "ORDER_DETAILS_SNTNS_TRIG" ENABLE;
 ALTER TRIGGER "ORDER_DETAILS_ROW_TRIG" ENABLE;
+```
 
 --最后动态增加一个PARTITION_BEFORE_2018分区：
+```
 ALTER TABLE ORDERS
 ADD PARTITION PARTITION_BEFORE_2018 VALUES LESS THAN (TO_DATE(' 2018-01-01 00:00:00', 'SYYYY-MM-DD HH24:MI:SS', 'NLS_CALENDAR=GREGORIAN'));
 
