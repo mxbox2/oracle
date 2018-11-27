@@ -90,6 +90,7 @@ END MyPack;
 ![加载失败](./img/图片2.png)
 
 函数SaleAmount要求输入的参数是部门号，输出部门的销售金额。
+
 查询sql语句：
 ```
 select MyPack.Get_SaleAmount(11) AS 部门11应收金额,MyPack.Get_SaleAmount(12) AS 部门12应收金额 from dual;
