@@ -97,7 +97,8 @@ select MyPack.Get_SaleAmount(11) AS 部门11应收金额,MyPack.Get_SaleAmount(1
 ```
 ![加载失败](./img/图片3.png)
 
-3. 在MyPack中创建一个过程，在过程中使用游标，递归查询某个员工及其所有下属，子下属员工。过程的输入参数是员工号，输出员工的ID,姓名，销售总金额。信息用dbms_output包中的put或者put_line函数。输出的员工信息用左添加空格的多少表示员工的层次（LEVEL）。比如下面显示5个员工的信息：
+3. 在MyPack中创建一个过程，在过程中使用游标，递归查询某个员工及其所有下属，子下属员工。过程的输入参数是员工号，输出员工的ID,姓名，销售总金额。信息用dbms_output包中的put或者put_line函数。输出的员工信息用左添加空格的多少表示员工的层次（LEVEL）。
+
 mypack的sql语句修改如下：
 ```
 create or replace PACKAGE MyPack IS
